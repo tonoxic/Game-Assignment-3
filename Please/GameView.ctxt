@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=GameView
+comment1.params=
+comment1.target=GameView()
+comment2.params=
+comment2.target=GameView\ getInstance()
+comment3.params=
+comment3.target=void\ initFullScreen()
+comment4.params=
+comment4.target=void\ startGame()
+comment5.params=
+comment5.target=void\ run()
+comment6.params=elapsedTime
+comment6.target=void\ gameUpdate(long)
+comment7.params=
+comment7.target=void\ screenUpdate()
+comment8.params=gScr
+comment8.target=void\ gameRender(java.awt.Graphics)
+comment9.params=
+comment9.target=void\ endGame()
+numComments=10

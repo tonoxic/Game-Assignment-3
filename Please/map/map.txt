@@ -1,0 +1,19 @@
+135
+B                                                                                   BBBBBBB                         BBBBBBBBBBBBBBBBBB
+B                                                                                        BB                               BBBBBBBBBBBB
+B                                                                                        BB                                 BBBBBBBBBB
+B                                                                                        BB                                 BBBBBBBBBB
+B                                                                                        BB                                    BBBBBBB
+B                                                                                B   E    B                                      BBBBB
+B                                                                                B        B                                        BBB  
+B              B            E B                                                 BBBBBBBBBBBB                                       BBB
+B              B              B                                               BBBBBBBBBBBBBB                                       BBB
+B              BBBBBBBBBBBBBBBB                                            BBBBBBBBBBBBBBBB                                        BBB
+B            BBBBBBBBBBBBBBBBBB                                          BB                                                        BBB
+B           BBB                                            B        E B                                                            BBB
+B          BBB                                             B          B                                                            BBB              
+B         BBBB                                            BBBBBBBBBBBBB                                                            BBB
+B        BBBBB      BB        E   E                      BBBBBBBBBBBBBBBBBB                                                        BBB
+B  P    BBBBBB E    BB                                  BBBBBBBBBBBBBBBBBBBB                 E                      E             BBBB
+B     BBBBBBBB      BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB                                                   BBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB

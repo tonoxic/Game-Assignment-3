@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Enemy
+comment1.params=x\ y\ numFrames\ filename
+comment1.target=Enemy(float,\ float,\ int,\ java.lang.String)
+comment2.params=dy
+comment2.target=void\ setVelocityY(float)
+comment3.params=y
+comment3.target=void\ setY(float)
+comment4.params=
+comment4.target=void\ hitWall()
+numComments=5

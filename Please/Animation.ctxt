@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Animation
+comment1.params=x\ y\ numFrames\ filename
+comment1.target=Animation(float,\ float,\ int,\ java.lang.String)
+comment10.params=framesCopy\ frames
+comment10.target=void\ copyAnimation(java.util.ArrayList,\ java.util.ArrayList)
+comment2.params=image\ duration
+comment2.target=void\ addFrame(java.awt.image.BufferedImage,\ long)
+comment3.params=
+comment3.target=void\ start()
+comment4.params=elapsedTime
+comment4.target=void\ update(long)
+comment5.params=
+comment5.target=java.awt.Image\ getImage()
+comment5.text=\r\n\ \ \ \ \ \ \ \ Gets\ this\ Animation's\ current\ image.\ Returns\ null\ if\ this\r\n\ \ \ \ \ \ \ \ animation\ has\ no\ images.\r\n
+comment6.params=
+comment6.target=int\ getNumFrames()
+comment7.params=i
+comment7.target=Animation.AnimFrame\ getFrame(int)
+comment8.params=numFrames
+comment8.target=void\ loadImage(int)
+comment9.params=src
+comment9.target=java.awt.image.BufferedImage\ copyImage(java.awt.image.BufferedImage)
+numComments=11

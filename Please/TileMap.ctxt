@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=TileMap
+comment1.params=width\ height
+comment1.target=TileMap(int,\ int)
+comment10.params=sprite\ tileWidth\ tileHeight
+comment10.target=java.awt.Point[]\ getTileCollision(Sprite,\ int,\ int)
+comment11.params=left\ right\ bot\ tileWidth\ tileHeight
+comment11.target=java.awt.Point[]\ getUnderfoot(float,\ float,\ float,\ int,\ int)
+comment2.params=
+comment2.target=int\ getWidth()
+comment3.params=
+comment3.target=void\ clearSprites()
+comment4.params=
+comment4.target=int\ getHeight()
+comment5.params=x\ y
+comment5.target=java.awt.Image\ getTile(int,\ int)
+comment6.params=x\ y\ tile
+comment6.target=void\ setTile(int,\ int,\ java.awt.Image)
+comment7.params=sprite
+comment7.target=void\ addSprite(Sprite)
+comment8.params=sprite
+comment8.target=void\ removeSprite(Sprite)
+comment9.params=
+comment9.target=java.util.Iterator\ getSprites()
+numComments=12

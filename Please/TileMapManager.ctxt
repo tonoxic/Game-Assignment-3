@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=TileMapManager
+comment1.params=gameWidth\ gameHeight
+comment1.target=TileMapManager(int,\ int)
+comment10.params=pixels
+comment10.target=int\ pixelsToTiles(int)
+comment2.params=filename
+comment2.target=java.awt.Image\ loadImage(java.lang.String)
+comment3.params=filename
+comment3.target=void\ loadMap(java.lang.String)
+comment4.params=elapsedTime
+comment4.target=void\ update(long)
+comment5.params=g
+comment5.target=void\ draw(java.awt.Graphics)
+comment5.text=\r\n\ \ \ \ \ \ \ \ Draws\ the\ specified\ TileMap.\r\n
+comment6.params=sprite
+comment6.target=boolean\ checkCollision(Sprite)
+comment7.params=sprite
+comment7.target=void\ checkPlayerCollision(Sprite)
+comment8.params=sprite
+comment8.target=boolean\ groundBelow(Sprite)
+comment9.params=numTiles
+comment9.target=int\ tilesToPixels(int)
+numComments=11

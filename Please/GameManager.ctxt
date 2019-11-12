@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=GameManager
+comment1.params=windowWidth\ windowHeight
+comment1.target=GameManager(int,\ int)
+comment2.params=elapsedTime
+comment2.target=void\ update(long)
+comment3.params=gScr
+comment3.target=void\ draw(java.awt.Graphics)
+numComments=4
