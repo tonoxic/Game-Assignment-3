@@ -32,13 +32,10 @@ public final class InputManager implements KeyListener {
 
     // Update function
     public void update() {
-        // If the player is pressing the LEFT arrow key or "A"
-        player.movingLeft(keyCodes[KeyEvent.VK_LEFT] || keyCodes[KeyEvent.VK_A]);
-        // If the player is pressing the RIGHT arrow key or "D"
-        player.movingRight(keyCodes[KeyEvent.VK_RIGHT] || keyCodes[KeyEvent.VK_D]);
-        // If the player presses SPACE then attempt to jump
+        player.movingLeft(keyCodes[KeyEvent.VK_LEFT]);
+        player.movingRight(keyCodes[KeyEvent.VK_RIGHT]);
+        player.setShot(keyCodes[KeyEvent.VK_SPACE]);
         if (keyCodes[KeyEvent.VK_UP]) player.jump(false);
-        // If the user presses ESC then stop the game from running
         if (keyCodes[KeyEvent.VK_ESCAPE]) GameView.running = false;
     }
 

@@ -28,8 +28,11 @@ public class TileMapManager {
     // Declare useful variables for map
     private int screenWidth, screenHeight;
     private int tileWidth, tileHeight;
+    private int numBullets;
+    private ScoreSlot tens;
+    private ScoreSlot ones;
     
-    private Image bg1, bg2,bg3,bg4, block;
+    private Image background,bg1, bg2, block;
 
     // Declare TileMap
     private TileMap map;
@@ -46,13 +49,16 @@ public class TileMapManager {
         // Initialise Variables used for the map
         screenWidth = gameWidth;
         screenHeight = gameHeight;
-    tileWidth = gameWidth/MIN_WIDTH;
+        tileWidth = gameWidth/MIN_WIDTH;
         tileHeight = gameHeight/HEIGHT;
+        numBullets=0;
         
-        bg1=loadImage("map/images/surround/background.png");
-        bg2=loadImage("map/images/surround/moon.png");
-        bg3=loadImage("map/images/surround/clouds.png");
-        bg4=loadImage("map/images/surround/treeline.png");
+        tens=new ScoreSlot(0, 0, 10, "tens","map/images/score.png");
+        ones=new ScoreSlot(105, 0, 10, "ones","map/images/score.png");
+        
+        background=loadImage("map/images/surround/background.jpg");
+        bg1=loadImage("map/images/surround/moon.png");
+        bg2=loadImage("map/images/surround/treeline.png");
         block=loadImage("map/images/surround/tile.png");
        
        loadMap("map/map.txt");
@@ -130,16 +136,21 @@ public class TileMapManager {
 
     // Update the sprites in the map
     public void update(long elapsedTime) {
+      
+        
         Iterator<Sprite> i = map.getSprites();
         while (i.hasNext()) {
             Sprite s = i.next();
-            if (!(s.getVisible())) continue;
+            if (!(s.getVisible()))continue; 
+
             s.update(elapsedTime);
             
             if (s instanceof Enemy) {
                 checkCollision(s);
                 checkPlayerCollision(s);
             }
+           
+           
         }
         // Update Player Sprite
         // - keep track of old position in case collision fails
@@ -164,6 +175,7 @@ public class TileMapManager {
         if (!(groundBelow(player))) player.setGrounded(false);
     }
 
+    
     /**
         Draws the specified TileMap.
     */
@@ -184,25 +196,32 @@ public class TileMapManager {
         g.fillRect(0, 0, screenWidth, screenHeight);
 
         // draw parallax background image
-        if (bg1!=null && bg2!=null && bg3!=null && bg4!=null) {
+        if (bg1!=null && bg2!=null && background!=null) {
                int x, y, iWidth;
+            g.drawImage (background, 0, 0,screenWidth,  screenHeight, null);
+            
+            iWidth = bg1.getWidth(null);
+            x = offsetX *
+                (screenWidth - bg1.getWidth(null)) /
+                (screenWidth - mapWidth);
+            y = screenHeight - bg1.getHeight(null);
+            g.drawImage(bg1, x, y, null);
+            
+            /* iWidth = bg1.getWidth(null);
+            x = 4*offsetX *
+                (screenWidth - bg1.getWidth(null)) /
+                (screenWidth - mapWidth);
+            y = screenHeight - bg1.getHeight(null);
+            g.drawImage(bg1, x, y, null);
+            if (x + iWidth < screenWidth) g.drawImage(bg2, x+iWidth, y, null);*/
             
             iWidth = bg2.getWidth(null);
-            x = 2*offsetX *
+            x =  2*offsetX *
                 (screenWidth - bg2.getWidth(null)) /
                 (screenWidth - mapWidth);
             y = screenHeight - bg2.getHeight(null);
             g.drawImage(bg2, x, y, null);
             if (x + iWidth < screenWidth) g.drawImage(bg2, x+iWidth, y, null);
-            
-            
-            iWidth = bg4.getWidth(null);
-            x =  8* offsetX *
-                (screenWidth - bg4.getWidth(null)) /
-                (screenWidth - mapWidth);
-            y = screenHeight - bg4.getHeight(null);
-            g.drawImage(bg4, x, y, null);
-            if (x + iWidth < screenWidth) g.drawImage(bg4, x+iWidth, y, null);
         
         }
 
@@ -253,10 +272,13 @@ public class TileMapManager {
                 g.drawImage(sprite.getImage(), x+midTileOffsetX, y+midTileOffsetY, sprite.getWidth(), sprite.getHeight(), null);
             }
         }
-
+        
+        g.drawImage(tens.getImage(), (int)tens.getX(), (int)tens.getY(), null);
+         g.drawImage(tens.getImage(), (int)ones.getX(), (int)ones.getY(), null);
         // Draw the Player
         player.draw(g, screenWidth, mapWidth);
-    }
+            
+    }   
 
     // Check whether a Sprite collides with the TileMap
     private boolean checkCollision(Sprite sprite) {

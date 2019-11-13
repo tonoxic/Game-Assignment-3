@@ -1,5 +1,5 @@
 import java.awt.Graphics;
-
+import java.util.ArrayList;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -19,6 +19,7 @@ public final class Player extends Animation {
     // Declare components to keep track of Player movement
     private boolean movingLeft = false, movingRight = false;
     private boolean onGround = false;
+    private boolean shoot=false;
 
     // Singleton Instance
     private static volatile Player INSTANCE = null;
@@ -31,7 +32,16 @@ public final class Player extends Animation {
         // Set up Player using super classes
         super(65, 65,8, filename);
         stillPlayer = new ImageIcon("map/images/still_hero.png").getImage();
-        // Initialise Player Audio components
+    }
+    
+        public void setShot(boolean b)
+    {
+        this.shoot=b;
+    }
+    
+    public boolean getShot()
+    {
+        return shoot;
     }
 
     // Singleton method to get the only instance of Player
@@ -45,6 +55,7 @@ public final class Player extends Animation {
         }
         return INSTANCE;
     }
+    
 
     @Override
     public Image getImage() {
@@ -105,6 +116,7 @@ public final class Player extends Animation {
 
     // Update the Player
     public void update(long elapsedTime) {
+        
         if (movingLeft) {
             setVelocityX(getVelocityX() - SPEED*elapsedTime);
         }
@@ -125,6 +137,7 @@ public final class Player extends Animation {
         // All that was changed above was speed
         // Update x and y values of player based on their dx and dy speeds
         super.update(elapsedTime);
+      
     }
 
     public void draw(Graphics gScr, int screenWidth, int mapWidth) {
@@ -156,6 +169,8 @@ public final class Player extends Animation {
                 gScr.drawImage(getImage(), (int)getX() - mapWidth + (middle*2), (int)getY(), getWidth(), getHeight(), null);
             }
         }
+        
+        
     }
 
 }

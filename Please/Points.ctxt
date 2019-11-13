@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Points
+comment1.params=
+comment1.target=Points()
+comment2.params=
+comment2.target=int\ getPoints()
+comment3.params=merit
+comment3.target=void\ addPoints(int)
+comment4.params=demerit
+comment4.target=void\ deductPoints(int)
+comment5.params=
+comment5.target=void\ update()
+numComments=6

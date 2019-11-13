@@ -135,7 +135,7 @@ public abstract class Sprite {
         return visible;
     }
     
-
+    
     // Sets whether the Sprite can be drawn or not
     public void setVisible(boolean visible) {
         this.visible = visible;
