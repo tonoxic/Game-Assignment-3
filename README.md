@@ -2,7 +2,7 @@ Game-Assignment-3
 
 
 				                Robot Alien World Game
-			            xxxxxxxxxXXXXXXXXXXXXXXXXxxxxxxxxx
+			            xxxxxxxxxXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxx
 
 OBJECTIVE
 XXXXXXXXX
