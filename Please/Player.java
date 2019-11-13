@@ -2,6 +2,10 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.awt.geom.Rectangle2D;
+
 
 // Code adapted from Brackeen
 
@@ -15,6 +19,8 @@ public final class Player extends Animation {
     private static final float SPEED = 0.002f;
     private static final float FRICTION = 0.8f;
     private static final float GRAVITY = 0.005f;
+    
+    private AudioClip attackSound;
 
     private boolean movingLeft = false, movingRight = false;
     private boolean onGround = false;
@@ -35,6 +41,7 @@ public final class Player extends Animation {
     private Player(String filename) {
         super(65, 65,8, filename);
         invulnerableTime=0;
+        loadAttackSound();
         stillPlayer = new ImageIcon("map/images/still_hero.png").getImage();
         attackPlayer= new ImageIcon("map/images/attack_hero.png").getImage();
     }
@@ -83,7 +90,7 @@ public final class Player extends Animation {
     public void getHurt()
     {
         if (invulnerableTime<=0)
-           {invulnerableTime=300;
+           {invulnerableTime=400;
             Points.deductPoints(1);
             }
     }
@@ -93,6 +100,7 @@ public final class Player extends Animation {
         if (attackTime<=0)
            {attackTime=200;
             isAttacking=true;
+            attackSound.play();
             }
     }
     
@@ -135,6 +143,7 @@ public final class Player extends Animation {
 
     // Update the Player
     public void update(long elapsedTime) {
+        
         if (invulnerableTime > 0) 
             invulnerableTime -= elapsedTime;
         
@@ -200,6 +209,25 @@ public final class Player extends Animation {
             }
         }
         
+        
+    }
+    
+    private void loadAttackSound()
+    {
+        
+        try
+        {
+            attackSound=Applet.newAudioClip (
+                    getClass().getResource("sounds/attack.wav"));
+                
+
+        }
+        
+        catch (Exception e) 
+        {
+            System.out.println ("Error loading sound file: " + e);
+        } 
+
         
     }
 

@@ -18,6 +18,9 @@ import java.awt.Rectangle;
 // Import Resources used for Sprite Management
 import java.util.Iterator;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
+
 // TileMapManager Class
 public class TileMapManager {
 
@@ -40,7 +43,9 @@ public class TileMapManager {
 
     // Declare Player
     private Player player;
-
+    
+    private AudioClip gameOverSound;
+    private AudioClip hurtSound;
 
     // Constructor
     public TileMapManager(int gameWidth, int gameHeight) {
@@ -63,7 +68,7 @@ public class TileMapManager {
         bg2=loadImage("map/images/surround/treeline.png");
         gameOverImage=loadImage("map/images/surround/gameOver.png");
         block=loadImage("map/images/surround/tile.png");
-       
+       loadHurtSound();
        loadMap("map/map.txt");
 
     }
@@ -522,7 +527,11 @@ public class TileMapManager {
                     enemy.setVisible(false);
                     enemy = null;
                 } else {
-                    player.getHurt();
+                    if ( Points.getPoints()>0)
+                    {
+                        player.getHurt();
+                        hurtSound.play();
+                    }
                 }
             }
         } 
@@ -561,4 +570,24 @@ public class TileMapManager {
     private int pixelsToTiles(int pixels) {
         return pixels / tileWidth;
     }
+    
+    private void loadHurtSound()
+    {
+        
+        try
+        {
+            hurtSound=Applet.newAudioClip (
+                    getClass().getResource("sounds/hurt.wav"));
+                
+
+        }
+        
+        catch (Exception e) 
+        {
+            System.out.println ("Error loading sound file: " + e);
+        } 
+
+        
+    }
+    
 }

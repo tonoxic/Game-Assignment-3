@@ -32,12 +32,13 @@ public final class InputManager implements KeyListener {
 
     // Update function
     public void update() {
-        if (player!=null){
+        if (player!=null  && Points.getPoints()!=0){
         player.movingLeft(keyCodes[KeyEvent.VK_LEFT]);
         player.movingRight(keyCodes[KeyEvent.VK_RIGHT]);
         if (keyCodes[KeyEvent.VK_UP]) player.jump(false);
-        if (keyCodes[KeyEvent.VK_ESCAPE]) GameView.running = false;
     }
+        if (keyCodes[KeyEvent.VK_ESCAPE]) GameView.running = false;
+    
     }
 
     @Override

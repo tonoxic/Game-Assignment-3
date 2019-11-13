@@ -1,13 +1,15 @@
+import java.applet.Applet;
+import java.applet.AudioClip;
 public class Points
 {
     static int score;
-    static long born;
     static Points points;
+    private static AudioClip deadSound;
     
     private Points()
     {
-        score=3;
-        born=System.currentTimeMillis();
+        score=15;
+        loadDeadSound();
     }
     
     public static int getPoints()
@@ -30,9 +32,33 @@ public class Points
     {
         if (points==null)
             points=new Points();
-        score-=demerit;
+        if (score>0)
+        {
+            score-=demerit;
         if (score<=0)
-            score=0;
+            {
+                score=0;
+                deadSound.play();
+            }
+        }
     }
-   
+
+     private void loadDeadSound()
+    {
+        
+        try
+        {
+            deadSound=Applet.newAudioClip (
+                    getClass().getResource("sounds/dead.wav"));
+                
+
+        }
+        
+        catch (Exception e) 
+        {
+            System.out.println ("Error loading sound file: " + e);
+        } 
+
+        
+    }
 }

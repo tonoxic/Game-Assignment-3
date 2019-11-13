@@ -8,4 +8,6 @@ comment3.params=merit
 comment3.target=void\ addPoints(int)
 comment4.params=demerit
 comment4.target=void\ deductPoints(int)
-numComments=5
+comment5.params=
+comment5.target=void\ loadDeadSound()
+numComments=6

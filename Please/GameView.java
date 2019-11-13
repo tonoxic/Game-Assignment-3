@@ -21,6 +21,7 @@ public final class GameView extends JFrame implements Runnable {
     private AudioClip bgrSound;
     private GameManager gm;
     private int windowWidth, windowHeight;
+    private AudioClip backgroundSound;
     
     // Declare variables used for full-screen and frame buffer
     private GraphicsDevice device;
@@ -51,6 +52,7 @@ public final class GameView extends JFrame implements Runnable {
         
         //Start With Points
         Points.getPoints(); 
+        loadBackgroundSound();
 
 
         // Commence Game Loop
@@ -109,7 +111,8 @@ public final class GameView extends JFrame implements Runnable {
         if (gameThread == null || !running) {
             gameThread = new Thread(this);
             System.out.println("Game Starting!");
-            gameThread.start();    
+            gameThread.start();
+            backgroundSound.loop();
         }
     }
     
@@ -179,6 +182,23 @@ public final class GameView extends JFrame implements Runnable {
     }
     
   
-    
+    private void loadBackgroundSound()
+    {
+        
+        try
+        {
+            backgroundSound=Applet.newAudioClip (
+                    getClass().getResource("sounds/background.wav"));
+                
+
+        }
+        
+        catch (Exception e) 
+        {
+            System.out.println ("Error loading sound file: " + e);
+        } 
+
+        
+    }    
     
 }
