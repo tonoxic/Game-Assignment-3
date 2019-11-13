@@ -32,7 +32,8 @@ public class TileMapManager {
     private ScoreSlot tens;
     private ScoreSlot ones;
     
-    private Image background,bg1, bg2, block;
+    private Image background,bg1, bg2, block,gameOverImage;
+    private boolean isGameOver;
 
     // Declare TileMap
     private TileMap map;
@@ -53,12 +54,14 @@ public class TileMapManager {
         tileHeight = gameHeight/HEIGHT;
         numBullets=0;
         
+        
         tens=new ScoreSlot(0, 0, 10, "tens","map/images/score.png");
         ones=new ScoreSlot(105, 0, 10, "ones","map/images/score.png");
         
         background=loadImage("map/images/surround/background.jpg");
         bg1=loadImage("map/images/surround/moon.png");
         bg2=loadImage("map/images/surround/treeline.png");
+        gameOverImage=loadImage("map/images/surround/gameOver.png");
         block=loadImage("map/images/surround/tile.png");
        
        loadMap("map/map.txt");
@@ -136,9 +139,9 @@ public class TileMapManager {
 
     // Update the sprites in the map
     public void update(long elapsedTime) {
-      
         
         Iterator<Sprite> i = map.getSprites();
+        int enemyCount=0;
         while (i.hasNext()) {
             Sprite s = i.next();
             if (!(s.getVisible()))continue; 
@@ -148,10 +151,14 @@ public class TileMapManager {
             if (s instanceof Enemy) {
                 checkCollision(s);
                 checkPlayerCollision(s);
+                enemyCount++;
             }
            
            
         }
+        
+        if (enemyCount==0)
+            isGameOver=true;
         // Update Player Sprite
         // - keep track of old position in case collision fails
         float oldX, oldY;
@@ -173,6 +180,10 @@ public class TileMapManager {
         }
         // Check for ground below the player
         if (!(groundBelow(player))) player.setGrounded(false);
+   
+        
+        if (Points.getPoints()==0)
+            isGameOver=true;
     }
 
     
@@ -201,7 +212,7 @@ public class TileMapManager {
             g.drawImage (background, 0, 0,screenWidth,  screenHeight, null);
             
             iWidth = bg1.getWidth(null);
-            x = offsetX *
+            x = offsetX/2 *
                 (screenWidth - bg1.getWidth(null)) /
                 (screenWidth - mapWidth);
             y = screenHeight - bg1.getHeight(null);
@@ -222,6 +233,8 @@ public class TileMapManager {
             y = screenHeight - bg2.getHeight(null);
             g.drawImage(bg2, x, y, null);
             if (x + iWidth < screenWidth) g.drawImage(bg2, x+iWidth, y, null);
+            ones.update();
+            tens.update();
         
         }
 
@@ -274,9 +287,13 @@ public class TileMapManager {
         }
         
         g.drawImage(tens.getImage(), (int)tens.getX(), (int)tens.getY(), null);
-         g.drawImage(tens.getImage(), (int)ones.getX(), (int)ones.getY(), null);
+         g.drawImage(ones.getImage(), (int)ones.getX(), (int)ones.getY(), null);
         // Draw the Player
         player.draw(g, screenWidth, mapWidth);
+        if (isGameOver)
+    {
+        g.drawImage (gameOverImage, 0, 0, screenWidth, screenHeight, null);
+    }
             
     }   
 
@@ -499,14 +516,13 @@ public class TileMapManager {
             Rectangle p = player.getBounds();
             // If the Player and Ememy collide
             if (p.intersects(e)) {
-                // If player is falling and half of the player's body is above the enemy
-                if (Float.compare(player.getVelocityY(), 0) > 0 
-                    && Float.compare(player.getY()+(player.getHeight()/2), enemy.getY()) < 0) {
+                
+                if (Player.getAttack())   
+                   {
                     enemy.setVisible(false);
                     enemy = null;
-                    player.jump(true);
                 } else {
-                    // The Player gets hurt
+                    player.getHurt();
                 }
             }
         } 

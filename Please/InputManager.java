@@ -32,24 +32,26 @@ public final class InputManager implements KeyListener {
 
     // Update function
     public void update() {
+        if (player!=null){
         player.movingLeft(keyCodes[KeyEvent.VK_LEFT]);
         player.movingRight(keyCodes[KeyEvent.VK_RIGHT]);
-        player.setShot(keyCodes[KeyEvent.VK_SPACE]);
         if (keyCodes[KeyEvent.VK_UP]) player.jump(false);
         if (keyCodes[KeyEvent.VK_ESCAPE]) GameView.running = false;
+    }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {}
     @Override
     public void keyReleased(KeyEvent e) {
-        // If a key is released then set its value to false
         if (e.getKeyCode() < KeyEvent.KEY_LAST)
             keyCodes[e.getKeyCode()] = false;
     }
     @Override
     public void keyPressed(KeyEvent e) {
-        // If a key is pressed then set its value to true
+        if (e.getKeyCode()==KeyEvent.VK_SPACE)
+            player.attack();
+            
         if (e.getKeyCode() < KeyEvent.KEY_LAST)
             keyCodes[e.getKeyCode()] = true;
     }

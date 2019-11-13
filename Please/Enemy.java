@@ -3,13 +3,15 @@ import java.awt.Graphics;
 public class Enemy extends Animation {
 
     // The enemy's speed factor
-    private final float SPEED = 0.1f;
+    private final float SPEED = 0.2f;
     private boolean onGround = false;
 
 
     // Constructor
     public Enemy(float x, float y, int numFrames, String filename) {
         super(x, y,numFrames, filename);
+        setWidth(120);
+        setHeight(120);
         setVelocityX(SPEED);
         setVelocityY(0);
 

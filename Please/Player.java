@@ -12,37 +12,33 @@ public final class Player extends Animation {
 
     // Declare and Initialise Player Constants
     private static final float JUMP_SPEED = -2f;
-    private static final float SPEED = 0.005f;
+    private static final float SPEED = 0.002f;
     private static final float FRICTION = 0.8f;
     private static final float GRAVITY = 0.005f;
 
-    // Declare components to keep track of Player movement
     private boolean movingLeft = false, movingRight = false;
     private boolean onGround = false;
+    
     private boolean shoot=false;
 
-    // Singleton Instance
     private static volatile Player INSTANCE = null;
+    
+    private int invulnerableTime;
 
-    // Declare Image to assist with Player animation
     private Image stillPlayer = null;
+    private Image attackPlayer=null;
+    
+    private static boolean isAttacking=false;
+    private int attackTime;
 
     // Constructor
     private Player(String filename) {
-        // Set up Player using super classes
         super(65, 65,8, filename);
+        invulnerableTime=0;
         stillPlayer = new ImageIcon("map/images/still_hero.png").getImage();
+        attackPlayer= new ImageIcon("map/images/attack_hero.png").getImage();
     }
     
-        public void setShot(boolean b)
-    {
-        this.shoot=b;
-    }
-    
-    public boolean getShot()
-    {
-        return shoot;
-    }
 
     // Singleton method to get the only instance of Player
     public static Player getInstance() {
@@ -60,7 +56,9 @@ public final class Player extends Animation {
     @Override
     public Image getImage() {
         // Return the current frame if moving but only one single frame if still
-        if (!(movingLeft || movingRight)) {
+        if (isAttacking)
+            return attackPlayer;
+        else if (!(movingLeft || movingRight)) {
             return stillPlayer;
         } else {
             return super.getImage();
@@ -80,6 +78,27 @@ public final class Player extends Animation {
     // Stop horizontal movement
     public void collideHorizontal() {
         setVelocityX(0);
+    }
+    
+    public void getHurt()
+    {
+        if (invulnerableTime<=0)
+           {invulnerableTime=300;
+            Points.deductPoints(1);
+            }
+    }
+    
+    public void attack()
+    {
+        if (attackTime<=0)
+           {attackTime=200;
+            isAttacking=true;
+            }
+    }
+    
+    public static boolean getAttack()
+    {
+        return isAttacking; 
     }
 
     // Stop vertical movement
@@ -116,7 +135,18 @@ public final class Player extends Animation {
 
     // Update the Player
     public void update(long elapsedTime) {
+        if (invulnerableTime > 0) 
+            invulnerableTime -= elapsedTime;
         
+        if (attackTime >0)
+            attackTime-=elapsedTime;
+        
+        else{
+            if (isAttacking==true);
+            isAttacking=false;
+        }
+        
+            
         if (movingLeft) {
             setVelocityX(getVelocityX() - SPEED*elapsedTime);
         }

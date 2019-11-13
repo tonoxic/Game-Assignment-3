@@ -125,6 +125,10 @@ public abstract class Sprite {
         this.width=w;
     }
 
+    public void setHeight(int h)
+    {
+        this.height=h;
+    }
     // Returns a Rectangle used for Collision
     public Rectangle getBounds() {
         return new Rectangle((int)x, (int)y, getWidth(), getHeight());

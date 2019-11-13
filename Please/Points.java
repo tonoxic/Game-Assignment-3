@@ -6,7 +6,7 @@ public class Points
     
     private Points()
     {
-        score=60;
+        score=3;
         born=System.currentTimeMillis();
     }
     
@@ -34,16 +34,5 @@ public class Points
         if (score<=0)
             score=0;
     }
-    
-    public static void update()
-    {
-        if (points==null)
-            points=new Points();
-        long now=System.currentTimeMillis();
-        if ((now-born)>=500)
-           {
-               deductPoints(1);
-               born=System.currentTimeMillis();
-           }
-    }
+   
 }
